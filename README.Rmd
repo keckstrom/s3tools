@@ -1,0 +1,7 @@
+
+
+### To Do
+[ ] remove Jira functions -> take to their own package with some of the mae functions -> omics_utils or something like that 
+[ ] expand documentation, trim dependencies to just those needed
+[ ] add reference to github website
+[ ] push to github

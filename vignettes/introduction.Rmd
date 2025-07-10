@@ -1,0 +1,62 @@
+---
+title: "introduction"
+output: rmarkdown::html_vignette
+vignette: >
+  %\VignetteIndexEntry{introduction}
+  %\VignetteEngine{knitr::rmarkdown}
+  %\VignetteEncoding{UTF-8}
+---
+
+```{r, include = FALSE}
+knitr::opts_chunk$set(
+  collapse = TRUE,
+  comment = "#>"
+)
+```
+
+```{r setup}
+library(s3tools)
+```
+
+
+Set up Credentials
+```{r load_creds}
+s3_cli <- fetch_paws_creds(type="public")
+
+```
+
+
+List files of a certain pattern within s3 prefix. For example, can list all of the VCF files contained within a prefix of the 1000genomes bucket. 
+```{r list_files}
+bucket <- "1000genomes"
+prefix <- "release/20130502/"
+
+vcf_files <- list_s3_files(bucket, ".vcf.gz$",prefix, s3_cli)
+
+```
+
+
+Read these files into R; automatically detects if a file is compressed and downloads locally to be provided to the user-defined read function. If the file is not compressed, directly streams file from s3 storage.
+
+Streaming example: 
+
+```{r stream_file, eval=FALSE}
+key <- "20131219.populations.tsv"
+pops <- paws_readusing(bucket,key,read.delim, s3_cli)
+
+```
+
+
+Compressed example
+```{r read_compressed, message=F,eval=FALSE}
+library(VariantAnnotation)
+chr1_vcf <- vcf_files[1]
+ALL.chr1.phase3 <- paws_readusing(bucket,chr1_vcf,read_function = readVcf,s3_cli)
+```
+
+
+Writing back to s3
+```{r,eval=FALSE}
+paws_writeusing(df,bucket, "test/data.csv",write.csv, write_args = list(row.names=FALSE),s3_cli)
+```
+

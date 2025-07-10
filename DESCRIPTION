@@ -1,0 +1,39 @@
+Package: s3tools
+Title: Functions for Interacting with s3 Objects with Role-based Access Control 
+Version: 1.0.0
+Authors@R: 
+    person("Korin", "Eckstrom", , "korin.m.eckstrom@example.com", role = c("aut", "cre"))
+Description: Provides a suite of functions for listing, reading, and writing data that is stored in s3 buckets using credntials from an AWS IAM Role. Wrapper around the paws package for access and base functions, with customized extensions for common omics file types and processes.
+License: MIT
+Encoding: UTF-8
+Roxygen: list(markdown = TRUE)
+RoxygenNote: 7.3.2
+VignetteBuilder: knitr
+Imports:
+  methods,
+  purrr,
+  stringr,
+  htmltools,
+  magrittr,
+  httr,
+  assertthat,
+  tidyverse,
+  dplyr,
+  paws,
+  readxl,
+  jsonlite
+Suggests:
+  testthat,
+  covr,
+  BiocStyle,
+  knitr,
+  rmarkdown,
+  openssl,
+  data.table,
+  dplyr,
+  tidyr,
+  R.utils,
+  urils,
+  usethis,
+  plyr
+Config/testthat/edition: 3
