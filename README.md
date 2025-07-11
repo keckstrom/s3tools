@@ -19,11 +19,14 @@ In order to use credentials from SSO, users can login in via aws cli as describe
 Setup profile in \~/.aws/config
 
 ```         
-profile [development]
-SSO session name: my-sso
-SSO start URL [None]: https://my-sso-portal.awsapps.com/start
-SSO region [None]: us-west-2
-SSO registration scopes [None]: sso:account:access
+[profile development]
+sso_account_id = 123456
+sso_role_name = common-usecase-pwrusr
+region = us-west-2
+output = json
+#
+sso_start_url = https://my-sso-portal.awsapps.com/start
+sso_region = us-west-2
 ```
 
 From the RStudio terminal
